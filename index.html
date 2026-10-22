@@ -25,7 +25,7 @@
         <button id="drawBtn">draw</button>
     </div>
 
-    <!-- 作図するキャンバス（横600px、縦400px） -->
+    <!-- Canvas 600px * 400px -->
     <canvas id="gridCanvas" width="600" height="400"></canvas>
 
     <script>
@@ -71,6 +71,22 @@
                 ctx.lineTo(canvas.width, y); // 線のゴール地点（一番右）
                 ctx.stroke();                // 実際に線を引く
             }
+
+
+            // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
+                const x = 300 + 100 * cos(cols / 20);
+                const y = 200 + 100 * sin(cols / 20);
+                
+                ctx.beginPath();
+                ctx.moveTo(300, 200);            // 線のスタート地点（一番左）
+                ctx.lineTo(x, y); // 線のゴール地点（一番右）
+                ctx.stroke();                // 実際に線を引く
+        
+
+
+
+
+            
         }
 
         // ボタンをクリックしたときに描画関数を実行する
