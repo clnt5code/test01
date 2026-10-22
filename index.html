@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 20</h1>
+    <h1>Lattice 21</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -80,16 +80,7 @@
                 ctx.stroke();                // 実際に線を引く
             }
 
-
-            // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
-            ctx.strokeStyle = '#ff0000'; 
-            ctx.lineWidth = 5;
-            const x = 300 + 100 * Math.cos(rotation);
-            const y = 200 + 100 * Math.sin(rotation);
-            ctx.beginPath();
-            ctx.moveTo(300, 200);        // from
-            ctx.lineTo(x, y);            // to
-            ctx.stroke();                // draw    
+   
         }
 
         // ボタンをクリックしたときに描画関数を実行する
@@ -100,7 +91,7 @@
 async function startApp() {
     
         for (let i = 0; i <= 1000; i++) {
-            const rotation = i / 30;
+            const rotation = i / 5;
             drawGrid(rotation);
 
             // wait
