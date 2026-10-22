@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 19</h1>
+    <h1>Lattice 20</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -61,8 +61,6 @@
                 const nsy = 200 + (x - 300) * Math.sin(rotation) - 100 * Math.cos(rotation);
                 const ntx = 300 + (x - 300) * Math.cos(rotation) - 100 * Math.sin(rotation);
                 const nty = 200 + (x - 300) * Math.sin(rotation) + 100 * Math.cos(rotation);
-                //ctx.moveTo(x, 100);             // 線のスタート地点（一番上）
-                //ctx.lineTo(x, 300); // 線のゴール地点（一番下）
                 ctx.moveTo(nsx, nsy);             // 線のスタート地点（一番上）
                 ctx.lineTo(ntx, nty); // 線のゴール地点（一番下）
                 ctx.stroke();                 // 実際に線を引く
@@ -73,8 +71,12 @@
                 const y = 100 + j * cellHeight;
                 ctx.beginPath();
                 // from (200,y) to (400,y)
-                ctx.moveTo(200, y);            // 線のスタート地点（一番左）
-                ctx.lineTo(400, y); // 線のゴール地点（一番右）
+                const nsx = 300 - 100 * Math.cos(rotation) - (y - 200) * Math.sin(rotation);
+                const nsy = 200 - 100 * Math.sin(rotation) + (y - 200) * Math.cos(rotation);
+                const ntx = 300 + 100 * Math.cos(rotation) - (y - 200) * Math.sin(rotation);
+                const nty = 200 + 100 * Math.sin(rotation) + (y - 200) * Math.cos(rotation);
+                ctx.moveTo(nsx, nsy);            // 線のスタート地点（一番左）
+                ctx.lineTo(ntx, nty); // 線のゴール地点（一番右）
                 ctx.stroke();                // 実際に線を引く
             }
 
