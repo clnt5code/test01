@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 8</h1>
+    <h1>Lattice 9</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -77,19 +77,11 @@
             const x = 300 + 100 * Math.cos(cols / 20);
             const y = 200 + 100 * Math.sin(cols / 20);
             ctx.beginPath();
-            ctx.strokeStyle = '#000000';
-            ctx.lineWidth = 2; 
-            ctx.moveTo(0, 0);        // from
-            ctx.lineTo(40, 30);            // to
+            ctx.moveTo(300, 200);        // from
+            ctx.lineTo(x, y);            // to
             ctx.stroke();                // draw
 
-            ctx.beginPath();
-            ctx.strokeStyle = '#ff0000'; // ➔ 確実に目立つ「赤」
-            ctx.lineWidth = 5;           // ➔ 太くする
-            ctx.moveTo(0, 0);            // 左上から
-            ctx.lineTo(300, 200);        // 画面の真ん中（横300, 縦200）まで！
-            ctx.stroke();
-
+            
 
 
 
