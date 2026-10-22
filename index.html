@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 5</h1>
+    <h1>Lattice 6</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -77,6 +77,8 @@
             const x = 300 + 100 * cos(cols / 20);
             const y = 200 + 100 * sin(cols / 20);
             ctx.beginPath();
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2; 
             ctx.moveTo(0, 0);        // from
             ctx.lineTo(40, 30);            // to
             ctx.stroke();                // draw
