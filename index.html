@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 6</h1>
+    <h1>Lattice 7</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -82,7 +82,13 @@
             ctx.moveTo(0, 0);        // from
             ctx.lineTo(40, 30);            // to
             ctx.stroke();                // draw
-        
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#ff0000'; // ➔ 確実に目立つ「赤」
+            ctx.lineWidth = 5;           // ➔ 太くする
+            ctx.moveTo(0, 0);            // 左上から
+            ctx.lineTo(300, 200);        // 画面の真ん中（横300, 縦200）まで！
+            ctx.stroke();
 
 
 
