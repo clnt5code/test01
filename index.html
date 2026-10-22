@@ -3,65 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マイ作図ツール</title>
+    <title>格子作図ツール</title>
     <style>
         body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; margin: 0; padding: 20px; }
         h1 { margin: 0 0 15px 0; color: #333; }
         #toolbar { background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
-        canvas { background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: crosshair; }
-        button { padding: 6px 12px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
-        button:hover { background: #eee; }
+        canvas { background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        input[type="number"] { width: 60px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; text-align: center; }
+        button { padding: 6px 12px; cursor: pointer; border: 1px solid #007eff; border-radius: 4px; background: #007eff; color: white; font-weight: bold; }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
 
-    <h1>マイ作図ツール</h1>
-
+    <h1>格子作図ツール</h1>
+    
+    <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
-        <label>色: <input type="color" id="colorPicker" value="#000000"></label>
-        <label>太さ: <input type="range" id="lineWidth" min="1" max="20" value="5"></label>
-        <button id="clearBtn">全消去</button>
+        <label>横のマス数: <input type="number" id="colsInput" value="20" min="1" max="100"></label>
+        <label>縦のマス数: <input type="number" id="rowsInput" value="20" min="1" max="100"></label>
+        <button id="drawBtn">格子を描画</button>
     </div>
 
-    <canvas id="paintCanvas" width="600" height="400"></canvas>
+    <!-- 作図するキャンバス（横600px、縦400px） -->
+    <canvas id="gridCanvas" width="600" height="400"></canvas>
 
     <script>
-        const canvas = document.getElementById('paintCanvas');
+        const canvas = document.getElementById('gridCanvas');
         const ctx = canvas.getContext('2d');
-        const colorPicker = document.getElementById('colorPicker');
-        const lineWidth = document.getElementById('lineWidth');
-        const clearBtn = document.getElementById('clearBtn');
+        const colsInput = document.getElementById('colsInput');
+        const rowsInput = document.getElementById('rowsInput');
+        const drawBtn = document.getElementById('drawBtn');
 
-        let isDrawing = false;
+        // 格子を描画する関数
+        function drawGrid() {
+            // 一度キャンバスを真っ白にクリアする
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // マウスイベント
-        canvas.addEventListener('mousedown', (e) => { isDrawing = true; draw(e); });
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', () => { isDrawing = false; ctx.beginPath(); });
-        canvas.addEventListener('mouseleave', () => { isDrawing = false; ctx.beginPath(); });
+            // 入力されたパラメータ（マスの数）を取得
+            const cols = parseInt(colsInput.value); // 横に何個並べるか
+            const rows = parseInt(rowsInput.value); // 縦に何個並べるか
 
-        function draw(e) {
-            if (!isDrawing) return;
+            // キャンバス全体のサイズをマスの数で割り、1マスの幅と高さを計算
+            const cellWidth = canvas.width / cols;
+            const cellHeight = canvas.height / rows;
 
-            // キャンバス上の正確な座標を取得
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top + 50;
+            // 線の見た目を設定
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#cccccc'; // 薄いグレー
 
-            ctx.lineWidth = lineWidth.value;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = colorPicker.value;
+            // 1. 縦線を引くループ処理
+            // 左端(0)から右端(cols)まで、1マス分の幅ずつ右にずらしながら線を引く
+            for (let i = 0; i <= cols; i++) {
+                const x = i * cellWidth;
+                ctx.beginPath();
+                ctx.moveTo(x, 0);             // 線のスタート地点（一番上）
+                ctx.lineTo(x, canvas.height); // 線のゴール地点（一番下）
+                ctx.stroke();                 // 実際に線を引く
+            }
 
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(x, y);
+            // 2. 横線を引くループ処理
+            // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
+            for (let j = 0; j <= rows; j++) {
+                const y = j * cellHeight;
+                ctx.beginPath();
+                ctx.moveTo(0, y);            // 線のスタート地点（一番左）
+                ctx.lineTo(canvas.width, y); // 線のゴール地点（一番右）
+                ctx.stroke();                // 実際に線を引く
+            }
         }
 
-        // 全消去機能
-        clearBtn.addEventListener('click', () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
+        // ボタンをクリックしたときに描画関数を実行する
+        drawBtn.addEventListener('click', drawGrid);
+
+        // ページを開いたときにも、初期値（20*20）で一度描画しておく
+        drawGrid();
     </script>
 </body>
 </html>
