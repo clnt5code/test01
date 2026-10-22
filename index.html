@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 16</h1>
+    <h1>Lattice 17</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -45,28 +45,28 @@
             const rows = parseInt(rowsInput.value); // 縦に何個並べるか
 
             // キャンバス全体のサイズをマスの数で割り、1マスの幅と高さを計算
-            const cellWidth = canvas.width / cols;
-            const cellHeight = canvas.height / rows;
+            const cellWidth = 20; //canvas.width / cols;
+            const cellHeight = 20; //canvas.height / rows;
 
             // 線の見た目を設定
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 2;
             ctx.strokeStyle = '#cccccc'; // 薄いグレー
 
-            // 1. 縦線を引くループ処理
-            // 左端(0)から右端(cols)まで、1マス分の幅ずつ右にずらしながら線を引く
-            for (let i = 0; i <= cols; i++) {
-                const x = i * cellWidth;
+            // vertical lines
+            for (let i = 0; i <= 10; i++) {
+                const x = 200 + i * cellWidth;
                 ctx.beginPath();
-                ctx.moveTo(x, 0);             // 線のスタート地点（一番上）
+                // from (x,200) to (x,400)
+                ctx.moveTo(x+10, 0);             // 線のスタート地点（一番上）
                 ctx.lineTo(x, canvas.height); // 線のゴール地点（一番下）
                 ctx.stroke();                 // 実際に線を引く
             }
 
-            // 2. 横線を引くループ処理
-            // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
-            for (let j = 0; j <= 8; j++) {
-                const y = j * cellHeight;
+            // horizontal lines
+            for (let j = 0; j <= 10; j++) {
+                const y = 100 + j * cellHeight;
                 ctx.beginPath();
+                // from (200,y) to (400,y)
                 ctx.moveTo(0, y);            // 線のスタート地点（一番左）
                 ctx.lineTo(canvas.width, y); // 線のゴール地点（一番右）
                 ctx.stroke();                // 実際に線を引く
