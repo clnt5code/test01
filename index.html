@@ -46,7 +46,7 @@
             // キャンバス上の正確な座標を取得
             const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const y = e.clientY - rect.top + 50;
 
             ctx.lineWidth = lineWidth.value;
             ctx.lineCap = 'round';
