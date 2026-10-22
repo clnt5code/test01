@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 18</h1>
+    <h1>Lattice 19</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -57,8 +57,14 @@
                 const x = 200 + i * cellWidth;
                 ctx.beginPath();
                 // from (x,100) to (x,300)
-                ctx.moveTo(x, 100);             // 線のスタート地点（一番上）
-                ctx.lineTo(x, 300); // 線のゴール地点（一番下）
+                const nsx = 300 + (x - 300) * Math.cos(rotation) + 100 * Math.sin(rotation);
+                const nsy = 200 + (x - 300) * Math.sin(rotation) - 100 * Math.cos(rotation);
+                const ntx = 300 + (x - 300) * Math.cos(rotation) - 100 * Math.sin(rotation);
+                const nty = 200 + (x - 300) * Math.sin(rotation) + 100 * Math.cos(rotation);
+                //ctx.moveTo(x, 100);             // 線のスタート地点（一番上）
+                //ctx.lineTo(x, 300); // 線のゴール地点（一番下）
+                ctx.moveTo(nsx, nsy);             // 線のスタート地点（一番上）
+                ctx.lineTo(ntx, nty); // 線のゴール地点（一番下）
                 ctx.stroke();                 // 実際に線を引く
             }
 
