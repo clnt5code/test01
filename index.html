@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 9</h1>
+    <h1>Lattice 11</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -36,7 +36,7 @@
         const drawBtn = document.getElementById('drawBtn');
 
         // 格子を描画する関数
-        function drawGrid() {
+        function drawGrid(rotation) {
             // 一度キャンバスを真っ白にクリアする
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -74,8 +74,10 @@
 
 
             // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
-            const x = 300 + 100 * Math.cos(cols / 20);
-            const y = 200 + 100 * Math.sin(cols / 20);
+            ctx.strokeStyle = '#ff0000'; 
+            ctx.lineWidth = 5;
+            const x = 300 + 100 * Math.cos(rotation);
+            const y = 200 + 100 * Math.sin(rotation);
             ctx.beginPath();
             ctx.moveTo(300, 200);        // from
             ctx.lineTo(x, y);            // to
@@ -89,10 +91,13 @@
         }
 
         // ボタンをクリックしたときに描画関数を実行する
-        drawBtn.addEventListener('click', drawGrid);
+        drawBtn.addEventListener('click', drawGrid(0));
 
         // ページを開いたときにも、初期値（20*20）で一度描画しておく
-        drawGrid();
+        const rotation = 0.1
+        drawGrid(rotation);
+
+        
     </script>
 </body>
 </html>
