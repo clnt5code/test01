@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 14</h1>
+    <h1>Lattice 15</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -91,12 +91,12 @@
 // 進行役のメイン関数を作る
 async function startApp() {
     
-        for (let i = 0; i <= 20; i++) {
+        for (let i = 0; i <= 100; i++) {
             const rotation = i / 10;
             drawGrid(rotation);
 
             // 2. 関数の外側で 500ms 待つ
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 30));
 
             }
         }
