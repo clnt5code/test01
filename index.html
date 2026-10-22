@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 11</h1>
+    <h1>Lattice 12</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -81,22 +81,18 @@
             ctx.beginPath();
             ctx.moveTo(300, 200);        // from
             ctx.lineTo(x, y);            // to
-            ctx.stroke();                // draw
-
-            
-
-
-
-            
+            ctx.stroke();                // draw    
         }
 
         // ボタンをクリックしたときに描画関数を実行する
         drawBtn.addEventListener('click', drawGrid(0));
 
         // ページを開いたときにも、初期値（20*20）で一度描画しておく
-        const rotation = 0.1
-        drawGrid(rotation);
-
+        for (let i = 0; i <= 20; i++) {
+            const rotation = i / 10;
+            drawGrid(rotation);
+        }
+        
         
     </script>
 </body>
