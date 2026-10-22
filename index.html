@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイ作図ツール</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; margin: 0; padding: 20px; }
+        h1 { margin: 0 0 15px 0; color: #333; }
+        #toolbar { background: white; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; display: flex; gap: 15px; align-items: center; }
+        canvas { background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: crosshair; }
+        button { padding: 6px 12px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
+        button:hover { background: #eee; }
+    </style>
+</head>
+<body>
+
+    <h1>マイ作図ツール</h1>
+
+    <div id="toolbar">
+        <label>色: <input type="color" id="colorPicker" value="#000000"></label>
+        <label>太さ: <input type="range" id="lineWidth" min="1" max="20" value="5"></label>
+        <button id="clearBtn">全消去</button>
+    </div>
+
+    <canvas id="paintCanvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const lineWidth = document.getElementById('lineWidth');
+        const clearBtn = document.getElementById('clearBtn');
+
+        let isDrawing = false;
+
+        // マウスイベント
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true; draw(e); });
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', () => { isDrawing = false; ctx.beginPath(); });
+        canvas.addEventListener('mouseleave', () => { isDrawing = false; ctx.beginPath(); });
+
+        function draw(e) {
+            if (!isDrawing) return;
+
+            // キャンバス上の正確な座標を取得
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            ctx.lineWidth = lineWidth.value;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = colorPicker.value;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        // 全消去機能
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+</body>
+</html>
