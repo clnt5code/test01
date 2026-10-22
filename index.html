@@ -74,8 +74,8 @@
 
 
             // 上端(0)から下端(rows)まで、1マス分の高さずつ下にずらしながら線を引く
-            const x = 300 + 100 * cos(cols / 20);
-            const y = 200 + 100 * sin(cols / 20);
+            const x = 300 + 100 * math.cos(cols / 20);
+            const y = 200 + 100 * math.sin(cols / 20);
             ctx.beginPath();
             ctx.strokeStyle = '#000000';
             ctx.lineWidth = 2; 
