@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 25</h1>
+    <h1>Lattice 26</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -83,17 +83,15 @@
 
 
             ctx.beginPath();
-// ctx.arc(中心x, 中心y, 半径, 開始角度, 終了角度)
+// ctx.arc(center x, center y, rad, start angle, end angle)
 ctx.arc(500, 300, 50, 0, Math.PI * 1.5); 
-
-// 線描画にする場合
-ctx.strokeStyle = '#ff0000'; // 線の色
+ctx.strokeStyle = '#ff0000'; // line color
 ctx.lineWidth = 2;
 ctx.stroke();
 
-// 塗りつぶしにする場合
-//ctx.fillStyle = '#ff0000';
-//ctx.fill();
+// fill
+ctx.fillStyle = '#00ff00';
+ctx.fill();
 
 
             
