@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 24</h1>
+    <h1>Lattice 25</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -80,7 +80,23 @@
                 ctx.stroke();                // 実際に線を引く
             }
 
-   
+
+
+            ctx.beginPath();
+// ctx.arc(中心x, 中心y, 半径, 開始角度, 終了角度)
+ctx.arc(300, 200, 50, 0, Math.PI * 2); 
+
+// 線描画にする場合
+ctx.strokeStyle = '#ff0000'; // 線の色
+ctx.lineWidth = 2;
+ctx.stroke();
+
+// 塗りつぶしにする場合
+ctx.fillStyle = '#ff0000';
+ctx.fill();
+
+
+            
         }
 
         // ボタンをクリックしたときに描画関数を実行する
