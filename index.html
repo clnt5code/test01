@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 27</h1>
+    <h1>Lattice 28</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -83,21 +83,29 @@
 
 
             ctx.beginPath();
-            // ctx.arc(center x, center y, rad, start angle, end angle)
+            // ctx.arc(center x, center y, radius, start angle, end angle)
             ctx.arc(500, 300, 50, 0, Math.PI * 2); 
             ctx.strokeStyle = '#ff0000'; // line color
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            // fill
+            // fill, transparent
             //ctx.fillStyle = '#00ff00';
-            
             //ctx.fillStyle = 'rgba(255, 71, 87, 0.2)'; // 半透明
             //ctx.fill();
-            const gradient = ctx.createLinearGradient(400, 200, 600, 400);
-            gradient.addColorStop(0, '#ff9a9e'); // 開始色
-            gradient.addColorStop(1, '#0000ff'); // 終了色
-            ctx.fillStyle = gradient;
+
+            // fill linear gradient
+            //const gradient = ctx.createLinearGradient(400, 200, 600, 400);
+            //gradient.addColorStop(0, '#ff9a9e'); // 開始色
+            //gradient.addColorStop(1, '#0000ff'); // 終了色
+            //ctx.fillStyle = gradient;
+            //ctx.fill();
+
+            // createRadialGradient(内側x, 内側y, 内側半径, 外側x, 外側y, 外側半径)
+            const radial = ctx.createRadialGradient(500, 300, 5, 500, 300, 50);
+            radial.addColorStop(0, '#ffffff'); // 中心（白）
+            radial.addColorStop(1, '#007eff'); // 外側（青）
+            ctx.fillStyle = radial;
             ctx.fill();
 
 
