@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 26</h1>
+    <h1>Lattice 27</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -92,7 +92,12 @@
             // fill
             //ctx.fillStyle = '#00ff00';
             
-            ctx.fillStyle = 'rgba(255, 71, 87, 0.2)'; // 半透明
+            //ctx.fillStyle = 'rgba(255, 71, 87, 0.2)'; // 半透明
+            //ctx.fill();
+            const gradient = ctx.createLinearGradient(-50, -50, 50, 50);
+            gradient.addColorStop(0, '#ff9a9e'); // 開始色
+            gradient.addColorStop(1, '#fad0c4'); // 終了色
+            ctx.fillStyle = gradient;
             ctx.fill();
 
 
