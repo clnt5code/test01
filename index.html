@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 29</h1>
+    <h1>Lattice 30</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -102,9 +102,10 @@
             //ctx.fill();
 
             // createRadialGradient(内側x, 内側y, 内側半径, 外側x, 外側y, 外側半径)
-            const radial = ctx.createRadialGradient(470, 270, 5, 470, 270, 50);
+            const radial = ctx.createRadialGradient(480, 280, 5, 480, 280, 80);
             radial.addColorStop(0, '#ffffff'); // 中心（白）
-            radial.addColorStop(1, '#007eff'); // 外側（青）
+            radial.addColorStop(0.7, '#007eff'); // 外側（青）
+            radial.addColorStop(1, '#003e8f'); // 外側（青）
             ctx.fillStyle = radial;
             ctx.fill();
 
