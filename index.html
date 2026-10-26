@@ -90,27 +90,28 @@
             ctx.stroke();
 
             // fill
-            ctx.fillStyle = '#00ff00';
+            //ctx.fillStyle = '#00ff00';
+            
+            ctx.fillStyle = 'rgba(255, 71, 87, 0.2)'; // 半透明
             ctx.fill();
 
 
+
             
+            ctx.fill();
+
         }
-
-        // ボタンをクリックしたときに描画関数を実行する
-        drawBtn.addEventListener('click', startApp);
-
         
-// 進行役のメイン関数を作る
-async function startApp() {
-    
+    // ボタンをクリックしたときに描画関数を実行する
+    drawBtn.addEventListener('click', startApp);
+
+    // 進行役のメイン関数を作る
+    async function startApp() {
         for (let i = 0; i <= 1000; i++) {
             const rotation = i / 200;
             drawGrid(rotation);
-
             // wait
             await new Promise(resolve => setTimeout(resolve, 1));
-
             }
         }
         
