@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <h1>Lattice 31</h1>
+    <h1>Lattice 32</h1>
     
     <!-- パラメータを設定する入力欄 -->
     <div id="toolbar">
@@ -82,13 +82,6 @@
 
 
 
-            ctx.beginPath();
-            // ctx.arc(center x, center y, radius, start angle, end angle)
-            ctx.arc(500, 300, 50, 0, Math.PI * 2); 
-            ctx.strokeStyle = '#007eff'; // line color
-            ctx.lineWidth = 2;
-            //ctx.stroke();
-
             // fill, transparent
             //ctx.fillStyle = '#00ff00';
             //ctx.fillStyle = 'rgba(255, 71, 87, 0.2)'; // 半透明
@@ -101,6 +94,13 @@
             //ctx.fillStyle = gradient;
             //ctx.fill();
 
+            ctx.beginPath();
+            // ctx.arc(center x, center y, radius, start angle, end angle)
+            ctx.arc(500, 300, 50, 0, Math.PI * 2); 
+            //ctx.strokeStyle = '#007eff'; // line color
+            //ctx.lineWidth = 2;
+            
+            
             // createRadialGradient(内側x, 内側y, 内側半径, 外側x, 外側y, 外側半径)
             const radial = ctx.createRadialGradient(480, 280, 5, 480, 280, 80);
             radial.addColorStop(0, '#ffffff'); // 中心（白）
